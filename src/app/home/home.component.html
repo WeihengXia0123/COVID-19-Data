@@ -1,0 +1,57 @@
+<div class="text-center">
+    
+    <h1><img src="https://firebasestorage.googleapis.com/v0/b/covid-data-247e6.appspot.com/o/atom-shape.png?alt=media&token=dd02727c-6cc3-4a36-8af8-77dc2b8c5465" 
+             alt="covid-favicon" width="50" height=auto>
+        COVID-19
+    </h1>
+    <h2>Home -  Live Updates and Statistics</h2>
+    <p>Corona Virus Summary Worldwide</p>
+
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col" colspan="2">Corona Virus Summary Worldwide</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-warning">
+            <th scope="row">Total Cases</th>
+            <td>{{ TotalConfirmed }}</td>
+          </tr>
+          <tr class="table-warning">
+            <th scope="row">New Cases</th>
+            <td>{{ NewConfirmed }}</td>
+          </tr>
+          <tr class="table-warning"> 
+            <th scope="row">Active Cases</th>
+            <td>{{ ActiveCases}}</td>
+          </tr>
+          <tr class="table-primary">
+            <th scope="row">Total Recovered</th>
+            <td>{{ TotalRecovered }}</td>
+          </tr>
+          <tr class="table-primary">
+            <th scope="row">New Recovered</th>
+            <td>{{NewRecovered}}  </td>
+          </tr>
+          <tr class="table-primary"> 
+            <th scope="row">Recovery Rate</th>
+            <td> {{ RecoveryRate}}%</td>
+          </tr>
+          <tr class="table-danger">
+            <th scope="row">Total Deaths</th>
+            <td>{{TotalDeaths}}</td>
+          </tr>
+          <tr class="table-danger">
+            <th scope="row">New Deaths</th>
+            <td>{{NewDeaths}}</td>
+          </tr>
+          <tr class="table-danger"> 
+            <th scope="row">Mortality Rate</th>
+            <td>{{MortalityRate}}%</td>
+          </tr>
+
+        </tbody>
+    </table>
+</div>
+
