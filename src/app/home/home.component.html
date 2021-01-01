@@ -5,9 +5,8 @@
         COVID-19
     </h1>
     <h2>Home -  Live Updates and Statistics</h2>
-    <p>Corona Virus Summary Worldwide</p>
 
-    <table class="table table-bordered">
+    <table class="table table-bordered" style="margin-top: 2cm;">
         <thead>
           <tr>
             <th scope="col" colspan="2">Corona Virus Summary Worldwide</th>
@@ -55,3 +54,52 @@
     </table>
 </div>
 
+<div style="margin-top: 2cm;">
+  <div>
+    <div>
+      <div class="chart">
+        <canvas baseChart
+          [data]= "pieChartData"
+          [labels]="pieChartLabels"
+          [chartType]="pieChartType"
+          [options]="pieChartOptions"
+          [plugins]="pieChartPlugins"
+          [colors]="pieChartColors"
+          [legend]="pieChartLegend">
+        </canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top: 2cm;">
+  <div style="display: block">
+    <canvas baseChart
+      [datasets]="barChartData"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      [plugins]="barChartPlugins"
+      [legend]="barChartLegend"
+      [chartType]="barChartType">
+    </canvas>
+  </div>
+</div>
+
+
+<div style="display: block; margin-top: 2cm;">
+  <canvas baseChart
+              [datasets]="lineChartData"
+              [labels]="lineChartLabels"
+              [options]="lineChartOptions"
+              [colors]="lineChartColors"
+              [legend]="lineChartLegend"
+              [chartType]="lineChartType"
+              [plugins]="lineChartPlugins"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)">
+    </canvas>
+</div>
+
+<div style="display: block; margin-top: 2cm;"> 
+  <app-country-table></app-country-table>
+</div>

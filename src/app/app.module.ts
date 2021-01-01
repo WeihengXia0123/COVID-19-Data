@@ -12,13 +12,16 @@ import { environment } from 'src/environments/environment';
 import { SigninComponent } from './signin/signin.component';
 import { HomeComponent } from './home/home.component';
 import { CountryPageComponent } from './country-page/country-page.component';
+import { CountryTableComponent } from './country-table/country-table.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
     AppComponent,
     SigninComponent,
     HomeComponent,
-    CountryPageComponent
+    CountryPageComponent,
+    CountryTableComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,8 @@ import { CountryPageComponent } from './country-page/country-page.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     ChartsModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
