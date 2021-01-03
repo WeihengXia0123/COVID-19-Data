@@ -12,18 +12,27 @@ export class CoronaDataService {
   getCountries():Observable<any>{  
     const url = "https://api.covid19api.com/countries"  
     return this.http.get<any>(url)  
-  } //This method is for populate country list in dropdown. Mention your api url in   
-  //place of xxxx.com   
+  }
+
+  getCountryAllStatusbyDate(slug, from_date, to_date):Observable<any>{
+    const url = "https://api.covid19api.com/country/" + slug + "?from=" + from_date + "&to=" + to_date
+    console.log(url)
+    return this.http.get<any>(url) 
+  }
+
+  getCountryDayOne(slug):Observable<any>{
+    const url = "https://api.covid19api.com/total/dayone/country/" + slug
+    return this.http.get<any>(url) 
+  }
 
   getSummary():Observable<any>{  
     const url = "https://api.covid19api.com/summary"  
     return this.http.get<any>(url)  
-  } //this method is for worldwide covid-19 status.  Mention your api url   
-  // in place of xxxx.com  
+  }
 
   getWorldbyDate(from_date, to_date):Observable<any>{
     const url = "https://api.covid19api.com/world?from=" + from_date + "&to=" + to_date
-    console.log(url)
+    // console.log(url)
     return this.http.get<any>(url)  
   } 
 

@@ -1,0 +1,37 @@
+<p>User: {{userName}}</p>
+<p>Country: {{country}}</p>
+
+<form (ngSubmit)="addNews()" >
+    <div class="input-group mb-3">
+        <span class="input-group-text">description</span>
+        <textarea class="form-control" aria-label="description-input" 
+            placeholder="Your description of the news..."
+            [(ngModel)]="description" [ngModelOptions]="{standalone: true}"> 
+        </textarea>
+    </div>
+<!-- 
+    <div class="input-group mb-3">
+        <span class="input-group-text">Country/Global</span>
+        <input type="string" id="country" class="form-control" 
+        [(ngModel)]="country" [ngModelOptions]="{standalone: true}"
+        />
+    </div> -->
+
+    <div class="input-group mb-3" >
+        <select class="browser-default custom-select" [(ngModel)]="country" [ngModelOptions]="{standalone: true}" > 
+            <option selected>Choose the country/global</option>
+            <option *ngFor="let countryItem of countryList"  >{{ countryItem[0] }}</option>
+        </select>
+    </div>
+
+    <button class="btn btn-primary" >Submit news</button>
+
+
+
+
+
+</form>
+
+<div style="margin-top: 2cm;">
+    <app-news-board></app-news-board>
+</div>

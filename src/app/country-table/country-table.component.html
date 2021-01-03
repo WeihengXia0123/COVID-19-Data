@@ -3,63 +3,66 @@
 </div>
 
 
-<table class="table">
-  <thead>
-  <tr >
-    <th scope="col" sortable="name" (click)="onSort($event)" style="text-align: center" class="table-active">
-      Country <br> <fa-icon [icon]="faArrowUp"></fa-icon> <fa-icon [icon]="faArrowDown"></fa-icon> 
-    </th>
-    <th scope="col" sortable="name" (click)="onSort($event)" style="text-align: center" class="table-warning">
-      New Cases <br> <fa-icon [icon]="faArrowUp"></fa-icon> <fa-icon [icon]="faArrowDown"></fa-icon> 
-    </th>
-    <th scope="col" sortable="name" (click)="onSort($event)" style="text-align: center" class="table-warning">
-      Total Cases <br> <fa-icon [icon]="faArrowUp"></fa-icon> <fa-icon [icon]="faArrowDown"></fa-icon> 
-    </th>
-    <th scope="col" sortable="name" (click)="onSort($event)" style="text-align: center" class="table-primary"> 
-      New Recoveries <br> <fa-icon [icon]="faArrowUp"></fa-icon> <fa-icon [icon]="faArrowDown"></fa-icon> 
-    </th>
-    <th scope="col" sortable="name" (click)="onSort($event)" style="text-align: center" class="table-primary">
-      Total Recoveries <br> <fa-icon [icon]="faArrowUp"></fa-icon> <fa-icon [icon]="faArrowDown"></fa-icon> 
-    </th>
-    <th scope="col" sortable="name" (click)="onSort($event)" style="text-align: center" class="table-danger">
-      New Deaths <br> <fa-icon [icon]="faArrowUp"></fa-icon> <fa-icon [icon]="faArrowDown"></fa-icon> 
-    </th>
-    <th scope="col" sortable="name" (click)="onSort($event)" style="text-align: center" class="table-danger">
-      Total Deaths <br> <fa-icon [icon]="faArrowUp"></fa-icon> <fa-icon [icon]="faArrowDown"></fa-icon> 
-    </th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let country of countries">
-    <!-- <th scope="row">{{ country.id }}</th> -->
-    <td class="table-active">
-      {{ country.name }}
-    </td>
+<div class="table-responsive-sm">
+  <table class="table table-sm">
+    <thead>
+      <tr >
+        <th scope="col" sortable="name" style="text-align: center" class="table-active">
+          Country <br> <fa-icon [icon]="faArrowUp"></fa-icon> <fa-icon [icon]="faArrowDown"></fa-icon> 
+        </th>
+        <th scope="col" sortable="name" style="text-align: center" class="table-warning">
+          New Cases <br> <fa-icon [icon]="faArrowUp"></fa-icon> <fa-icon [icon]="faArrowDown"></fa-icon> 
+        </th>
+        <th scope="col" sortable="name" style="text-align: center" class="table-warning">
+          Total Cases <br> <fa-icon [icon]="faArrowUp"></fa-icon> <fa-icon [icon]="faArrowDown"></fa-icon> 
+        </th>
+        <th scope="col" sortable="name" style="text-align: center" class="table-primary"> 
+          New Recoveries <br> <fa-icon [icon]="faArrowUp"></fa-icon> <fa-icon [icon]="faArrowDown"></fa-icon> 
+        </th>
+        <th scope="col" sortable="name" style="text-align: center" class="table-primary">
+          Total Recoveries <br> <fa-icon [icon]="faArrowUp"></fa-icon> <fa-icon [icon]="faArrowDown"></fa-icon> 
+        </th>
+        <th scope="col" sortable="name" style="text-align: center" class="table-danger">
+          New Deaths <br> <fa-icon [icon]="faArrowUp"></fa-icon> <fa-icon [icon]="faArrowDown"></fa-icon> 
+        </th>
+        <th scope="col" sortable="name" style="text-align: center" class="table-danger">
+          Total Deaths <br> <fa-icon [icon]="faArrowUp"></fa-icon> <fa-icon [icon]="faArrowDown"></fa-icon> 
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let country of countries">
+        <!-- <th scope="row">{{ country.id }}</th> -->
+        <td class="table-active" >
+          <!-- TODO: 此处将country.name改称country.Slug -->
+          <a class="nav-link" routerLink="/countries/{{country.slug}}">{{ country.name }}</a>
+        </td>
 
-    <td class="table-warning">
-      {{ country.newCases}}
-    </td>
+        <td class="table-warning">
+          {{ country.newCases}}
+        </td>
 
-    <td class="table-warning">
-      {{ country.totalCases | number }}
-    </td>
+        <td class="table-warning">
+          {{ country.totalCases | number }}
+        </td>
 
-    <td class="table-primary">
-      {{ country.newRecoveries | number }}
-    </td>
+        <td class="table-primary">
+          {{ country.newRecoveries | number }}
+        </td>
 
-    <td class="table-primary">
-      {{ country.totalRecoveries | number }}
-    </td>
+        <td class="table-primary">
+          {{ country.totalRecoveries | number }}
+        </td>
 
-    <td class="table-danger">
-      {{ country.newDeaths | number }}
-    </td>
+        <td class="table-danger">
+          {{ country.newDeaths | number }}
+        </td>
 
-    <td class="table-danger">
-      {{ country.totalDeaths | number }}
-    </td>
+        <td class="table-danger">
+          {{ country.totalDeaths | number }}
+        </td>
 
-  </tr>
-  </tbody>
-</table>
+      </tr>
+    </tbody>
+  </table>
+</div>

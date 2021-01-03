@@ -1,3 +1,29 @@
+<div class="text-center" style="margin-top: 1cm;">
+    <h1><img src="https://firebasestorage.googleapis.com/v0/b/covid-data-247e6.appspot.com/o/atom-shape.png?alt=media&token=dd02727c-6cc3-4a36-8af8-77dc2b8c5465" 
+        alt="covid-favicon" width="50" height=auto>
+    COVID-19
+    </h1>
+    <h2>Live Updates and Statistics</h2>
+    <a routerLink="homePage"><button class="btn btn-info pull-right" style="margin:10px;"> Home </button></a>
+    <a routerLink="news"><button class="btn btn-info pull-right" style="margin:10px;"> Add News </button></a>
+    <button class="btn btn-info" *ngIf="!authNewsService.userSignedIn()" (click)="authNewsService.signInWithGoogle()" style="margin:10px;">Sign In</button>
+    <button class="btn btn-danger" *ngIf="authNewsService.userSignedIn()" (click)="authNewsService.SignOut()" style="margin:10px;">Logout</button>
+    
+</div>
+
+
+
 <div class="container my-5">
     <router-outlet></router-outlet>
 </div>
+
+<!-- footer -->
+<footer class="footer">
+    <div class="container" style="text-align: center">
+        <div class="content has-text-centered">
+            <p>
+            Data Source: <a href="https://covid19api.com/">COVID-19 API / John Hopkins CSSE</a>
+            </p>
+        </div>
+    </div>
+</footer>

@@ -139,12 +139,6 @@ export class HomeComponent implements OnInit {
   @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
 
   // Data
-  countries:any  
-  country:any  
-  Date:Date  
-  Active:number  
-  Country:String  
-
   NewConfirmed:number  
   NewRecovered:number  
   NewDeaths:number  
@@ -160,10 +154,6 @@ export class HomeComponent implements OnInit {
   constructor(private corona: CoronaDataService){}  
   
   ngOnInit(){  
-    this.corona.getCountries().subscribe((data)=>{  
-    console.log(data)  
-    this.countries = data  
-    }) //for populating country names in dropdown  
   
     this.getworldtotal() //for worldwide status  
 
@@ -174,8 +164,7 @@ export class HomeComponent implements OnInit {
   
   getworldtotal(){  
     this.corona.getSummary().subscribe((data)=>{  
-      console.log("hi")
-      console.log(data) //this is for worldwide status  
+      // console.log(data) //this is for worldwide status  
         
       this.TotalConfirmed = data.Global.TotalConfirmed
       this.NewConfirmed = data.Global.NewConfirmed
@@ -197,7 +186,7 @@ export class HomeComponent implements OnInit {
     var dd = String(date.getDate()).padStart(2, '0');
     var mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = date.getFullYear();
-    console.log(yyyy+"-"+mm+"-"+dd+"T00:00:00Z");
+    // console.log(yyyy+"-"+mm+"-"+dd+"T00:00:00Z");
 
     return yyyy+"-"+mm+"-"+dd+"T00:00:00Z"
   }
@@ -208,13 +197,13 @@ export class HomeComponent implements OnInit {
     for (let i=0; i<7; i++){
       var date = new Date();
       date.setDate(date.getDate()-i)
-      dateLabel[this.barChartLabels.length-1-i] = String(date.getDate())+"/" + String(date.getMonth()+1)
+      dateLabel[this.barChartLabels.length-1-i] = String(date.getDate()).padStart(2, '0')+"/" + String(date.getMonth()+1).padStart(2, '0')
     }
     this.barChartLabels = dateLabel
     
     // bar chart data
     this.corona.getWorldbyDate(this.getDate(7), this.getDate(0)).subscribe((data)=>{
-      console.log(data)
+      // console.log(data)
       data.sort(function(a,b){
         return a.TotalConfirmed - b.TotalConfirmed
       })
@@ -239,10 +228,13 @@ export class HomeComponent implements OnInit {
     // line chart labels
     var line_dateLabel:any[] = new Array()
     var date = new Date();
-    while(date.getDate()>13 || date.getMonth()>=4){
+    var aprilDate = new Date('2020-04-14');
+
+    while(date.getTime() >= aprilDate.getTime()){
       date.setDate(date.getDate()-1)
       line_dateLabel.push(String(date.getDate())+"/" + String(date.getMonth() + 1).padStart(2, '0'))
     }
+
     line_dateLabel = line_dateLabel.reverse()
     this.lineChartLabels = line_dateLabel
 
@@ -269,6 +261,7 @@ export class HomeComponent implements OnInit {
       this.lineChartData[2].data = dailyData[2]
     })
 
+    console.log(this.lineChartData)
   }
 
   // events

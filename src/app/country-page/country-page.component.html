@@ -1,3 +1,115 @@
 <div class="text-center">
-    <h1>Specific Country Page</h1>
+    <h2>{{country}}</h2>
+    <div class="text-center">
+        <table class="table table-bordered" style="margin-top: 1cm;">
+            <thead>
+              <tr>
+                <th scope="col" colspan="2">Corona Virus Summary Worldwide</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="table-warning">
+                <th scope="row">Total Cases</th>
+                <td>{{ TotalConfirmed }}</td>
+              </tr>
+              <tr class="table-warning">
+                <th scope="row">New Cases</th>
+                <td>{{ NewConfirmed }}</td>
+              </tr>
+              <tr class="table-warning"> 
+                <th scope="row">Active Cases</th>
+                <td>{{ ActiveCases}}</td>
+              </tr>
+              <tr class="table-primary">
+                <th scope="row">Total Recovered</th>
+                <td>{{ TotalRecovered }}</td>
+              </tr>
+              <tr class="table-primary">
+                <th scope="row">New Recovered</th>
+                <td>{{NewRecovered}}  </td>
+              </tr>
+              <tr class="table-primary"> 
+                <th scope="row">Recovery Rate</th>
+                <td> {{ RecoveryRate}}%</td>
+              </tr>
+              <tr class="table-danger">
+                <th scope="row">Total Deaths</th>
+                <td>{{TotalDeaths}}</td>
+              </tr>
+              <tr class="table-danger">
+                <th scope="row">New Deaths</th>
+                <td>{{NewDeaths}}</td>
+              </tr>
+              <tr class="table-danger"> 
+                <th scope="row">Mortality Rate</th>
+                <td>{{MortalityRate}}%</td>
+              </tr>
+    
+            </tbody>
+        </table>
+    </div>
 </div>
+
+<div style="margin-top: 2cm;">
+    <div>
+      <div>
+        <div class="chart">
+          <canvas baseChart
+            [data]= "pieChartData"
+            [labels]="pieChartLabels"
+            [chartType]="pieChartType"
+            [options]="pieChartOptions"
+            [plugins]="pieChartPlugins"
+            [colors]="pieChartColors"
+            [legend]="pieChartLegend">
+          </canvas>
+        </div>
+      </div>
+    </div>
+</div>
+  
+
+<div style="display: block; margin-top: 2cm;">
+    <canvas baseChart
+    [datasets]="barChartData"
+    [labels]="barChartLabels"
+    [options]="barChartOptions"
+    [plugins]="barChartPlugins"
+    [legend]="barChartLegend"
+    [chartType]="barChartType">
+    </canvas>
+</div>
+
+<div style="display: block; margin-top: 2cm;">
+    <canvas baseChart
+                [datasets]="lineChartData"
+                [labels]="lineChartLabels"
+                [options]="lineChartOptions"
+                [colors]="lineChartColors"
+                [legend]="lineChartLegend"
+                [chartType]="lineChartType"
+                [plugins]="lineChartPlugins"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)">
+      </canvas>
+</div>
+
+<div style="text-align: center;">
+  <h2>News Board</h2>    
+</div>
+
+<div *ngFor="let one_news of news">
+  <p>
+      <font size="4" color="blue">User: {{userName}}, country: {{one_news.country}}</font>
+  </p>
+
+  <p>
+      {{one_news.date.toDate()}}
+  </p>
+
+  <p>
+      
+      Description: {{one_news.description}}
+  </p>
+</div>
+

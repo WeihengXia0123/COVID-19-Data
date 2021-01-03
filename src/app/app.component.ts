@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import {CoronaDataService} from './services/corona-data.service'  
-
+import { Component, OnInit } from '@angular/core';
+import {AuthNewsService} from './services/auth-news.service'
 
 @Component({
   selector: 'app-root',
@@ -8,6 +7,10 @@ import {CoronaDataService} from './services/corona-data.service'
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent { //list of arrays to access dynamic data from API and these array names should match with API end points with value names
+export class AppComponent implements OnInit{ //list of arrays to access dynamic data from API and these array names should match with API end points with value names
+  constructor(public authNewsService: AuthNewsService){}
 
+  ngOnInit(){
+
+  }
 }  

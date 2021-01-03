@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule} from '@angular/forms';
 
 import { AngularFireModule} from "@angular/fire"
 import { AngularFirestoreModule} from "@angular/fire/firestore"
@@ -14,6 +15,8 @@ import { HomeComponent } from './home/home.component';
 import { CountryPageComponent } from './country-page/country-page.component';
 import { CountryTableComponent } from './country-table/country-table.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NewsComponent } from './news/news.component';
+import { NewsBoardComponent } from './news-board/news-board.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     SigninComponent,
     HomeComponent,
     CountryPageComponent,
-    CountryTableComponent
+    CountryTableComponent,
+    NewsComponent,
+    NewsBoardComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +35,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     AngularFirestoreModule,
     ChartsModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
