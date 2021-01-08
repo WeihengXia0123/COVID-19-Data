@@ -200,7 +200,9 @@ export class CountryPageComponent implements OnInit {
   ngOnInit(): void {
     // Note: Below 'queryParams' can be replaced with 'params' depending on your requirements
     this.countrySlug = this.activatedRoute.snapshot.paramMap.get('countrySlug');
-    console.log(this.countrySlug);
+    // console.log(this.countrySlug);
+
+    
 
     // get covid-19 data
     this.getCountryTotal(this.countrySlug)
@@ -209,8 +211,7 @@ export class CountryPageComponent implements OnInit {
 
     this.getCountryDayOne()
 
-    console.log("YO")
-    this.getNewsandUser()
+    
   }
 
   // functions
@@ -222,6 +223,8 @@ export class CountryPageComponent implements OnInit {
           console.log("Found the country name!")
           this.countryDetails = CountriyData
           this.country = CountriyData.Country
+
+          this.getNewsandUser()
         }
       }
 
@@ -390,7 +393,6 @@ export class CountryPageComponent implements OnInit {
       
       console.log(this.news_flag)
       if (this.news_flag == 0){
-        console.log("printing news")
         for(let i=0; i<news.length; i++){
           if(news[i].country == this.country){
             this.news.push(news[i]);
