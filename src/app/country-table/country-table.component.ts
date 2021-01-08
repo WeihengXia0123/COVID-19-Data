@@ -15,6 +15,15 @@ interface Country {
 
 const COUNTRIES: Country[] = [];
 
+export type SortColumn = keyof Country | '';
+export type SortDirection = 'asc' | 'desc' | '';
+
+export interface SortEvent {
+  column: SortColumn;
+  direction: SortDirection;
+}
+
+
 @Component({
   selector: 'app-country-table',
   templateUrl: './country-table.component.html',
@@ -33,6 +42,8 @@ export class CountryTableComponent implements OnInit{
 
   ngOnInit(){
     this.getbyCountry()
+
+    
   }
 
   getbyCountry(){
@@ -53,7 +64,99 @@ export class CountryTableComponent implements OnInit{
           })
       }
       
+      // this.sortbyCountrynewCases()
     })
   }
+
+  public sortbyCountrynewCasesUp(){
+    console.log("sorting")
+    COUNTRIES.sort(function(a, b){
+      return a.newCases - b.newCases;
+    })
+  };
+  public sortbyCountrynewCasesDown(){
+    console.log("sorting")
+    COUNTRIES.sort(function(a, b){
+      return b.newCases - a.newCases;
+    })
+  };
+
+  public sortbyCountryNameUp(){
+    console.log("sorting")
+    COUNTRIES.sort(function(a, b){
+      return a.name.localeCompare(b.name);
+    })
+  };
+  public sortbyCountryNameDown(){
+    console.log("sorting")
+    COUNTRIES.sort(function(a, b){
+      return b.name.localeCompare(a.name);
+    })
+  };
+
+  public sortTotalCasesUp(){
+    console.log("sorting")
+    COUNTRIES.sort(function(a, b){
+      return a.totalCases - b.totalCases;
+    })
+  };
+  public sortTotalCasesDown(){
+    console.log("sorting")
+    COUNTRIES.sort(function(a, b){
+      return b.totalCases - a.totalCases;
+    })
+  };
+
+  public sortNewRecvUp(){
+    console.log("sorting")
+    COUNTRIES.sort(function(a, b){
+      return a.newRecoveries - b.newRecoveries;
+    })
+  };
+  public sortNewRecvDown(){
+    console.log("sorting")
+    COUNTRIES.sort(function(a, b){
+      return b.newRecoveries - a.newRecoveries;
+    })
+  };
+
+  public sortTotalRecvUp(){
+    console.log("sorting")
+    COUNTRIES.sort(function(a, b){
+      return a.totalRecoveries - b.totalRecoveries;
+    })
+  };
+  public sortTotalRecvDown(){
+    console.log("sorting")
+    COUNTRIES.sort(function(a, b){
+      return b.totalRecoveries - a.totalRecoveries;
+    })
+  };
+
+  public sortNewDeathUp(){
+    console.log("sorting")
+    COUNTRIES.sort(function(a, b){
+      return a.newDeaths - b.newDeaths;
+    })
+  };
+  public sortNewDeathDown(){
+    console.log("sorting")
+    COUNTRIES.sort(function(a, b){
+      return b.newDeaths - a.newDeaths;
+    })
+  };
+
+  public sortTotalDeathUp(){
+    console.log("sorting")
+    COUNTRIES.sort(function(a, b){
+      return a.totalDeaths - b.totalDeaths;
+    })
+  };
+  public sortTotalDeathDown(){
+    console.log("sorting")
+    COUNTRIES.sort(function(a, b){
+      return b.totalDeaths - a.totalDeaths;
+    })
+  };
 
 }

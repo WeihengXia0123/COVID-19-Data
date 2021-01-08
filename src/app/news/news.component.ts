@@ -47,14 +47,14 @@ export class NewsComponent implements OnInit {
     console.log("getCountryList")
 
     this.corona.getSummary().subscribe((data)=>{  
-      console.log(data) //this is for worldwide status  
+      // console.log(data) //this is for worldwide status  
 
       for (let i=0; i<data.Countries.length; i++){
         // this.countryList[i] = []
         this.countryList.push(Array(data.Countries[i].Country, data.Countries[i].Slug))
       }
       
-      console.log(this.countryList)
+      // console.log(this.countryList)
     })
   }
 }

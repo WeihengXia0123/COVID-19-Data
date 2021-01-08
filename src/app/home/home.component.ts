@@ -179,7 +179,7 @@ export class HomeComponent implements OnInit {
       this.pieChartData = [this.TotalDeaths, this.TotalRecovered,  this.ActiveCases];
     })
   }
-
+  
   getDate(num_days: number){
     var date = new Date();
     date.setDate(date.getDate()-num_days);
@@ -194,16 +194,16 @@ export class HomeComponent implements OnInit {
   getworld7days(){
     // bar chart labels
     var dateLabel:any[] = new Array()
-    for (let i=0; i<7; i++){
+    for (let i=0; i<8; i++){
       var date = new Date();
-      date.setDate(date.getDate()-i)
+      date.setDate(date.getDate()-i-1)
       dateLabel[this.barChartLabels.length-1-i] = String(date.getDate()).padStart(2, '0')+"/" + String(date.getMonth()+1).padStart(2, '0')
     }
     this.barChartLabels = dateLabel
     
     // bar chart data
-    this.corona.getWorldbyDate(this.getDate(7), this.getDate(0)).subscribe((data)=>{
-      // console.log(data)
+    this.corona.getWorldbyDate(this.getDate(12), this.getDate(0)).subscribe((data)=>{
+      console.log(data)
       data.sort(function(a,b){
         return a.TotalConfirmed - b.TotalConfirmed
       })
@@ -240,7 +240,7 @@ export class HomeComponent implements OnInit {
 
     // line chart data
     this.corona.getWorldbyDate("2020-04-13T00:00:00Z", this.getDate(0)).subscribe((data)=>{
-      console.log(data)
+      // console.log(data)
       data.sort(function(a, b){
         return a.TotalConfirmed - b.TotalConfirmed
       })

@@ -10,6 +10,7 @@ import * as pluginAnnotations from 'chartjs-plugin-annotation';
 import { AuthNewsService } from '../services/auth-news.service';
 import { User } from '../user.model';
 import { News } from '../news.model';
+import { collectExternalReferences } from '@angular/compiler';
 
 interface DailyData{
   dailyDeaths: number;
@@ -37,6 +38,8 @@ class DailyData{
 })
 
 export class CountryPageComponent implements OnInit {
+  news_flag = 0
+
   // Pie
   public pieChartData: number[] = [0,0,0]
   public pieChartLabels: Label[] = [['Dead Cases'], ['Recovered Cases'], 'Active Cases'];
@@ -206,6 +209,7 @@ export class CountryPageComponent implements OnInit {
 
     this.getCountryDayOne()
 
+    console.log("YO")
     this.getNewsandUser()
   }
 
@@ -259,7 +263,7 @@ export class CountryPageComponent implements OnInit {
     this.barChartLabels = dateLabel.reverse()
     
     // bar chart data
-    this.corona.getCountryAllStatusbyDate(this.countrySlug, this.getDate(9), this.getDate(0)).subscribe((data)=>{
+    this.corona.getCountryAllStatusbyDate(this.countrySlug, this.getDate(8), this.getDate(0)).subscribe((data)=>{
       // Sort the data accoording to TotalConfirmed (Ascending order)
       data.sort(function(a,b){
         return a.Confirmed - b.Confirmed
@@ -267,13 +271,52 @@ export class CountryPageComponent implements OnInit {
 
       let list: Array<any> = []
   
-      console.log(data)
+      // console.log(data)
+      //Todo: group data by date, throw away province
+      var merged_province_OneDay_Confirmed: {[data_date: string]: number} = {}
+      var merged_province_OneDay_Recovered: {[data_date: string]: number} = {}
+      var merged_province_OneDay_Deaths: {[data_date: string]: number} = {}
+      var merged_province_EightDay = []
+      for (var elem of data){
+        if (merged_province_OneDay_Confirmed[elem.Date] == undefined){
+          merged_province_OneDay_Confirmed[elem.Date] = elem.Confirmed
+        }
+        else{
+          merged_province_OneDay_Confirmed[elem.Date] += elem.Confirmed
+        }
+        if (merged_province_OneDay_Recovered[elem.Date] == undefined){
+          merged_province_OneDay_Recovered[elem.Date] = elem.Recovered
+        }
+        else{
+          merged_province_OneDay_Recovered[elem.Date] += elem.Recovered
+        }
+        if (merged_province_OneDay_Deaths[elem.Date] == undefined){
+          merged_province_OneDay_Deaths[elem.Date] = elem.Deaths
+        }
+        else{
+          merged_province_OneDay_Deaths[elem.Date] += elem.Deaths
+        }
+      }
+      // merged_province_EightDay.push(merged_province_OneDay_Confirmed)
+      // merged_province_EightDay.push(merged_province_OneDay_Recovered)
+      // merged_province_EightDay.push(merged_province_OneDay_Deaths)
+
+      // merged_province_EightDay.push(Object.values(merged_province_OneDay_Confirmed))
+      merged_province_EightDay.push(Object.values(merged_province_OneDay_Deaths).sort())
+      merged_province_EightDay.push(Object.values(merged_province_OneDay_Recovered).sort())
+      merged_province_EightDay.push(Object.values(merged_province_OneDay_Confirmed).sort(function(a,b){
+        return a - b
+      }))
+    
+      console.log(merged_province_EightDay)
       for (let i=1; i<8; i++){
         list[i-1] = []
         // console.log(i)
-        list[i-1][0] = data[i].Deaths - data[i-1].Deaths
-        list[i-1][1] = data[i].Recovered - data[i-1].Recovered
-        list[i-1][2] = data[i].Confirmed - data[i-1].Confirmed
+        list[i-1][0] = merged_province_EightDay[0][i] - merged_province_EightDay[0][i-1]
+        list[i-1][1] = merged_province_EightDay[1][i] - merged_province_EightDay[1][i-1]
+        list[i-1][2] = merged_province_EightDay[2][i] - merged_province_EightDay[2][i-1]       
+        // list[i-1][1] = data[i].Recovered - data[i-1].Recovered
+        // list[i-1][2] = data[i].Confirmed - data[i-1].Confirmed
       }
 
       console.log(list)
@@ -297,8 +340,8 @@ export class CountryPageComponent implements OnInit {
   getCountryDayOne(){
     // line chart data
     this.corona.getCountryDayOne(this.countrySlug).subscribe((data)=>{
-      console.log("getCountryDayOne")
-      console.log(data)
+      // console.log("getCountryDayOne")
+      // console.log(data)
 
       data.sort(function(a, b){
         return a.TotalConfirmed - b.TotalConfirmed
@@ -330,21 +373,31 @@ export class CountryPageComponent implements OnInit {
     this.user = this.authNews.getUser();
     this.userName = this.user.displayName;
     this.authNews.getAllNews().subscribe((news: News[])=>{
-      if(this.count == 2){
-        // Go through the news, select the ones with the correct country name
+      // if(this.count == 2){
+      //   // Go through the news, select the ones with the correct country name
+      //   for(let i=0; i<news.length; i++){
+      //     if(news[i].country == this.country){
+      //       this.news.push(news[i]);
+      //     }
+      //   }
+      // }
+      // else if(this.count == 0){
+      //   this.count = 2;
+      // }
+      // else{
+      //   this.count -= 1;
+      // }
+      
+      console.log(this.news_flag)
+      if (this.news_flag == 0){
+        console.log("printing news")
         for(let i=0; i<news.length; i++){
           if(news[i].country == this.country){
             this.news.push(news[i]);
           }
         }
       }
-      else if(this.count == 0){
-        this.count = 2;
-      }
-      else{
-        this.count -= 1;
-      }
-    
+      this.news_flag = 1
     });
   }
 

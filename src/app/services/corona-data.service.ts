@@ -32,7 +32,7 @@ export class CoronaDataService {
 
   getWorldbyDate(from_date, to_date):Observable<any>{
     const url = "https://api.covid19api.com/world?from=" + from_date + "&to=" + to_date
-    // console.log(url)
+    console.log(url)
     return this.http.get<any>(url)  
   } 
 

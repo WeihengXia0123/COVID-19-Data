@@ -1,5 +1,5 @@
 <div style="text-align: center">
-  <h1>Corona Virus Cases by Country</h1>
+  <h1 > Corona Virus Cases by Country</h1>
 </div>
 
 
@@ -8,25 +8,39 @@
     <thead>
       <tr >
         <th scope="col" sortable="name" style="text-align: center" class="table-active">
-          Country <br> <fa-icon [icon]="faArrowUp"></fa-icon> <fa-icon [icon]="faArrowDown"></fa-icon> 
+          Country <br> 
+          <fa-icon [icon]="faArrowUp" (click)="sortbyCountryNameUp()"></fa-icon> 
+          <fa-icon [icon]="faArrowDown" (click)="sortbyCountryNameDown()"></fa-icon> 
         </th>
         <th scope="col" sortable="name" style="text-align: center" class="table-warning">
-          New Cases <br> <fa-icon [icon]="faArrowUp"></fa-icon> <fa-icon [icon]="faArrowDown"></fa-icon> 
+          New Cases <br> 
+          <fa-icon [icon]="faArrowUp" (click)="sortbyCountrynewCasesUp()" ></fa-icon> 
+          <fa-icon [icon]="faArrowDown" (click)="sortbyCountrynewCasesDown()"></fa-icon> 
         </th>
         <th scope="col" sortable="name" style="text-align: center" class="table-warning">
-          Total Cases <br> <fa-icon [icon]="faArrowUp"></fa-icon> <fa-icon [icon]="faArrowDown"></fa-icon> 
+          Total Cases <br> 
+          <fa-icon [icon]="faArrowUp" (click)="sortTotalCasesUp()"></fa-icon> 
+          <fa-icon [icon]="faArrowDown" (click)="sortTotalCasesDown()"></fa-icon> 
         </th>
         <th scope="col" sortable="name" style="text-align: center" class="table-primary"> 
-          New Recoveries <br> <fa-icon [icon]="faArrowUp"></fa-icon> <fa-icon [icon]="faArrowDown"></fa-icon> 
+          New Recoveries <br> 
+          <fa-icon [icon]="faArrowUp" (click)="sortNewRecvUp()"></fa-icon> 
+          <fa-icon [icon]="faArrowDown" (click)="sortNewRecvDown()"></fa-icon> 
         </th>
         <th scope="col" sortable="name" style="text-align: center" class="table-primary">
-          Total Recoveries <br> <fa-icon [icon]="faArrowUp"></fa-icon> <fa-icon [icon]="faArrowDown"></fa-icon> 
+          Total Recoveries <br> 
+          <fa-icon [icon]="faArrowUp" (click)="sortTotalRecvUp()"></fa-icon> 
+          <fa-icon [icon]="faArrowDown" (click)="sortTotalRecvDown()"></fa-icon> 
         </th>
         <th scope="col" sortable="name" style="text-align: center" class="table-danger">
-          New Deaths <br> <fa-icon [icon]="faArrowUp"></fa-icon> <fa-icon [icon]="faArrowDown"></fa-icon> 
+          New Deaths <br> 
+          <fa-icon [icon]="faArrowUp" (click)="sortNewDeathUp()"></fa-icon> 
+          <fa-icon [icon]="faArrowDown" (click)="sortNewDeathDown()"></fa-icon> 
         </th>
         <th scope="col" sortable="name" style="text-align: center" class="table-danger">
-          Total Deaths <br> <fa-icon [icon]="faArrowUp"></fa-icon> <fa-icon [icon]="faArrowDown"></fa-icon> 
+          Total Deaths <br> 
+          <fa-icon [icon]="faArrowUp" (click)="sortTotalDeathUp()"></fa-icon> 
+          <fa-icon [icon]="faArrowDown" (click)="sortTotalDeathDown()"></fa-icon> 
         </th>
       </tr>
     </thead>
