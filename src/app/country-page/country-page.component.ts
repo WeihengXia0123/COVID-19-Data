@@ -39,7 +39,7 @@ class DailyData{
 
 export class CountryPageComponent implements OnInit {
   news_flag = 0
-
+  
   // Pie
   public pieChartData: number[] = [0,0,0]
   public pieChartLabels: Label[] = [['Dead Cases'], ['Recovered Cases'], 'Active Cases'];
@@ -201,8 +201,6 @@ export class CountryPageComponent implements OnInit {
     // Note: Below 'queryParams' can be replaced with 'params' depending on your requirements
     this.countrySlug = this.activatedRoute.snapshot.paramMap.get('countrySlug');
     // console.log(this.countrySlug);
-
-    
 
     // get covid-19 data
     this.getCountryTotal(this.countrySlug)

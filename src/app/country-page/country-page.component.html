@@ -99,17 +99,19 @@
 </div>
 
 <div *ngFor="let one_news of news">
-  <p>
-      <font size="4" color="blue">User: {{one_news.userName}}, country: {{one_news.country}}</font>
-  </p>
+
+  <div style="text-align:left;">
+    <font size="4" class="text-primary">User: {{one_news.userName}}, Region: {{one_news.country}}</font>
+    <span style="float:right; font-size: 100%;">
+        <!-- {{one_news.date.toDate()}} -->
+        {{one_news.date.toDate() | date:'mediumDate'}}
+    </span>
+    
+  </div>
 
   <p>
-      {{one_news.date.toDate()}}
-  </p>
-
-  <p>
-      
       Description: {{one_news.description}}
   </p>
+
 </div>
 

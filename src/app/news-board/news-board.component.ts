@@ -11,6 +11,7 @@ import { User } from '../user.model';
 export class NewsBoardComponent implements OnInit {
   news: News[] = [];
   count: number = 2;
+  news_flag = 0
 
   constructor(public authNews: AuthNewsService) { }
 
@@ -20,21 +21,15 @@ export class NewsBoardComponent implements OnInit {
     // One wierd pheonomenon here:
     // my subscribe() will fire 3 times!
     // but I didn't change the data on News!
-    if(this.count == 2){
+    if(this.news_flag == 0){
       for(let i=0; i<news.length; i++){
         if(news[i].country == "Global"){
           this.news.push(news[i]);
         }
       }
-      // this.news = news;
-      // console.log(this.news)
+      this.news_flag = 1
     }
-    else if(this.count == 0){
-      this.count = 2
-    }
-    else{
-      this.count -= 1;
-    }
+
   });
 
   }

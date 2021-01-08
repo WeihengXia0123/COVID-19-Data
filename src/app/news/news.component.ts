@@ -57,4 +57,8 @@ export class NewsComponent implements OnInit {
       // console.log(this.countryList)
     })
   }
+
+  SubmitAlert(){
+    window.alert("News Submission Complete!")
+  }
 }
