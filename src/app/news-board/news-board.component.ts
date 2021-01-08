@@ -21,8 +21,13 @@ export class NewsBoardComponent implements OnInit {
     // my subscribe() will fire 3 times!
     // but I didn't change the data on News!
     if(this.count == 2){
-      this.news = news;
-      console.log(this.news)
+      for(let i=0; i<news.length; i++){
+        if(news[i].country == "Global"){
+          this.news.push(news[i]);
+        }
+      }
+      // this.news = news;
+      // console.log(this.news)
     }
     else if(this.count == 0){
       this.count = 2

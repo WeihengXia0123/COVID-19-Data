@@ -35,6 +35,18 @@ export class CountryTableComponent implements OnInit{
   faArrowUp = faArrowUp;
   faArrowDown = faArrowDown;
 
+
+  // hover
+  hover1 = false
+  hover2 = false
+  hover3 = false
+  hover4 = false
+  hover5 = false
+  hover6 = false
+  hover7 = false
+
+  sortFlag = [0,0,0,0,0,0,0]
+
   // table
   countries = COUNTRIES;
 
@@ -68,95 +80,121 @@ export class CountryTableComponent implements OnInit{
     })
   }
 
-  public sortbyCountrynewCasesUp(){
+  public sortbyCountryName(){
     console.log("sorting")
-    COUNTRIES.sort(function(a, b){
-      return a.newCases - b.newCases;
-    })
-  };
-  public sortbyCountrynewCasesDown(){
-    console.log("sorting")
-    COUNTRIES.sort(function(a, b){
-      return b.newCases - a.newCases;
-    })
-  };
-
-  public sortbyCountryNameUp(){
-    console.log("sorting")
-    COUNTRIES.sort(function(a, b){
-      return a.name.localeCompare(b.name);
-    })
-  };
-  public sortbyCountryNameDown(){
-    console.log("sorting")
-    COUNTRIES.sort(function(a, b){
-      return b.name.localeCompare(a.name);
-    })
+    if(this.sortFlag[0] == 0){
+      COUNTRIES.sort(function(a, b){
+        return b.name.localeCompare(a.name);
+      })
+      this.sortFlag[0] = 1
+    }
+    else{
+      COUNTRIES.sort(function(a, b){
+        return a.name.localeCompare(b.name);
+      })
+      this.sortFlag[0] = 0
+    }
   };
 
-  public sortTotalCasesUp(){
+  public sortbyCountrynewCases(){
     console.log("sorting")
-    COUNTRIES.sort(function(a, b){
-      return a.totalCases - b.totalCases;
-    })
-  };
-  public sortTotalCasesDown(){
-    console.log("sorting")
-    COUNTRIES.sort(function(a, b){
-      return b.totalCases - a.totalCases;
-    })
+
+    if(this.sortFlag[1] == 0){
+      COUNTRIES.sort(function(a, b){
+        return b.newCases - a.newCases;
+      })
+      this.sortFlag[1] = 1
+    }
+    else{
+      COUNTRIES.sort(function(a, b){
+        return a.newCases - b.newCases;
+      })
+      this.sortFlag[1] = 0
+    }
   };
 
-  public sortNewRecvUp(){
+  public sortbyCountrytotalCases(){
     console.log("sorting")
-    COUNTRIES.sort(function(a, b){
-      return a.newRecoveries - b.newRecoveries;
-    })
-  };
-  public sortNewRecvDown(){
-    console.log("sorting")
-    COUNTRIES.sort(function(a, b){
-      return b.newRecoveries - a.newRecoveries;
-    })
+
+    if(this.sortFlag[2] == 0){
+      COUNTRIES.sort(function(a, b){
+        return b.totalCases - a.totalCases;
+      })
+      this.sortFlag[2] = 1
+    }
+    else{
+      COUNTRIES.sort(function(a, b){
+        return a.totalCases - b.totalCases;
+      })
+      this.sortFlag[2] = 0
+    }
   };
 
-  public sortTotalRecvUp(){
+  public sortbyCountrynewRecoveries(){
     console.log("sorting")
-    COUNTRIES.sort(function(a, b){
-      return a.totalRecoveries - b.totalRecoveries;
-    })
-  };
-  public sortTotalRecvDown(){
-    console.log("sorting")
-    COUNTRIES.sort(function(a, b){
-      return b.totalRecoveries - a.totalRecoveries;
-    })
+
+    if(this.sortFlag[3] == 0){
+      COUNTRIES.sort(function(a, b){
+        return b.newRecoveries - a.newRecoveries;
+      })
+      this.sortFlag[3] = 1
+    }
+    else{
+      COUNTRIES.sort(function(a, b){
+        return a.newRecoveries - b.newRecoveries;
+      })
+      this.sortFlag[3] = 0
+    }
   };
 
-  public sortNewDeathUp(){
+  public sortbyCountrytotalRecoveries(){
     console.log("sorting")
-    COUNTRIES.sort(function(a, b){
-      return a.newDeaths - b.newDeaths;
-    })
-  };
-  public sortNewDeathDown(){
-    console.log("sorting")
-    COUNTRIES.sort(function(a, b){
-      return b.newDeaths - a.newDeaths;
-    })
+
+    if(this.sortFlag[4] == 0){
+      COUNTRIES.sort(function(a, b){
+        return b.totalRecoveries - a.totalRecoveries;
+      })
+      this.sortFlag[4] = 1
+    }
+    else{
+      COUNTRIES.sort(function(a, b){
+        return a.totalRecoveries - b.totalRecoveries;
+      })
+      this.sortFlag[4] = 0
+    }
   };
 
-  public sortTotalDeathUp(){
+  public sortbyCountrynewDeaths(){
     console.log("sorting")
-    COUNTRIES.sort(function(a, b){
-      return a.totalDeaths - b.totalDeaths;
-    })
-  };
-  public sortTotalDeathDown(){
-    console.log("sorting")
-    COUNTRIES.sort(function(a, b){
-      return b.totalDeaths - a.totalDeaths;
-    })
+
+    if(this.sortFlag[5] == 0){
+      COUNTRIES.sort(function(a, b){
+        return b.newDeaths - a.newDeaths;
+      })
+      this.sortFlag[5] = 1
+    }
+    else{
+      COUNTRIES.sort(function(a, b){
+        return a.newDeaths - b.newDeaths;
+      })
+      this.sortFlag[5] = 0
+    }
   };
 
+  public sortbyCountrytotalDeaths(){
+    console.log("sorting")
+
+    if(this.sortFlag[6] == 0){
+      COUNTRIES.sort(function(a, b){
+        return b.totalDeaths - a.totalDeaths;
+      })
+      this.sortFlag[6] = 1
+    }
+    else{
+      COUNTRIES.sort(function(a, b){
+        return a.totalDeaths - b.totalDeaths;
+      })
+      this.sortFlag[6] = 0
+    }
+  };
 }

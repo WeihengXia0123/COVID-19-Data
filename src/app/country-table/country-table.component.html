@@ -3,44 +3,44 @@
 </div>
 
 
-<div class="table-responsive-sm">
+<div class="table-responsive-sm" style="cursor: pointer;">
   <table class="table table-sm">
     <thead>
       <tr >
-        <th scope="col" sortable="name" style="text-align: center" class="table-active">
+        <th scope="col" sortable="name" style="text-align: center" (mouseover)="hover1=true" (mouseleave)="hover1=false" [ngStyle]="{backgroundColor: hover1==true  ? 'lightgrey' : 'transparent' }" (click)="sortbyCountryName()">
           Country <br> 
-          <fa-icon [icon]="faArrowUp" (click)="sortbyCountryNameUp()"></fa-icon> 
-          <fa-icon [icon]="faArrowDown" (click)="sortbyCountryNameDown()"></fa-icon> 
+          <fa-icon [icon]="faArrowUp"  ></fa-icon> 
+          <fa-icon [icon]="faArrowDown" ></fa-icon> 
         </th>
-        <th scope="col" sortable="name" style="text-align: center" class="table-warning">
+        <th scope="col" sortable="name" style="text-align: center" (mouseover)="hover2=true" (mouseleave)="hover2=false" [ngStyle]="{backgroundColor: hover2==true  ? 'lightgrey' : 'transparent' }" (click)="sortbyCountrynewCases()">
           New Cases <br> 
-          <fa-icon [icon]="faArrowUp" (click)="sortbyCountrynewCasesUp()" ></fa-icon> 
-          <fa-icon [icon]="faArrowDown" (click)="sortbyCountrynewCasesDown()"></fa-icon> 
+          <fa-icon [icon]="faArrowUp"  ></fa-icon> 
+          <fa-icon [icon]="faArrowDown" ></fa-icon> 
         </th>
-        <th scope="col" sortable="name" style="text-align: center" class="table-warning">
+        <th scope="col" sortable="name" style="text-align: center" (mouseover)="hover3=true" (mouseleave)="hover3=false" [ngStyle]="{backgroundColor: hover3==true  ? 'lightgrey' : 'transparent' }" (click)="sortbyCountrytotalCases()">
           Total Cases <br> 
-          <fa-icon [icon]="faArrowUp" (click)="sortTotalCasesUp()"></fa-icon> 
-          <fa-icon [icon]="faArrowDown" (click)="sortTotalCasesDown()"></fa-icon> 
+          <fa-icon [icon]="faArrowUp" ></fa-icon> 
+          <fa-icon [icon]="faArrowDown"></fa-icon> 
         </th>
-        <th scope="col" sortable="name" style="text-align: center" class="table-primary"> 
+        <th scope="col" sortable="name" style="text-align: center" (mouseover)="hover4=true" (mouseleave)="hover4=false" [ngStyle]="{backgroundColor: hover4==true  ? 'lightgrey' : 'transparent' }" (click)="sortbyCountrynewRecoveries()">
           New Recoveries <br> 
-          <fa-icon [icon]="faArrowUp" (click)="sortNewRecvUp()"></fa-icon> 
-          <fa-icon [icon]="faArrowDown" (click)="sortNewRecvDown()"></fa-icon> 
+          <fa-icon [icon]="faArrowUp"></fa-icon> 
+          <fa-icon [icon]="faArrowDown"></fa-icon> 
         </th>
-        <th scope="col" sortable="name" style="text-align: center" class="table-primary">
+        <th scope="col" sortable="name" style="text-align: center" (mouseover)="hover5=true" (mouseleave)="hover5=false" [ngStyle]="{backgroundColor: hover5==true  ? 'lightgrey' : 'transparent' }" (click)="sortbyCountrytotalRecoveries()">
           Total Recoveries <br> 
-          <fa-icon [icon]="faArrowUp" (click)="sortTotalRecvUp()"></fa-icon> 
-          <fa-icon [icon]="faArrowDown" (click)="sortTotalRecvDown()"></fa-icon> 
+          <fa-icon [icon]="faArrowUp"></fa-icon> 
+          <fa-icon [icon]="faArrowDown"></fa-icon> 
         </th>
-        <th scope="col" sortable="name" style="text-align: center" class="table-danger">
+        <th scope="col" sortable="name" style="text-align: center" (mouseover)="hover6=true" (mouseleave)="hover6=false" [ngStyle]="{backgroundColor: hover6==true  ? 'lightgrey' : 'transparent' }" (click)="sortbyCountrynewDeaths()">
           New Deaths <br> 
-          <fa-icon [icon]="faArrowUp" (click)="sortNewDeathUp()"></fa-icon> 
-          <fa-icon [icon]="faArrowDown" (click)="sortNewDeathDown()"></fa-icon> 
+          <fa-icon [icon]="faArrowUp"></fa-icon> 
+          <fa-icon [icon]="faArrowDown"></fa-icon> 
         </th>
-        <th scope="col" sortable="name" style="text-align: center" class="table-danger">
+        <th scope="col" sortable="name" style="text-align: center" (mouseover)="hover7=true" (mouseleave)="hover7=false" [ngStyle]="{backgroundColor: hover7==true  ? 'lightgrey' : 'transparent' }" (click)="sortbyCountrytotalDeaths()">
           Total Deaths <br> 
-          <fa-icon [icon]="faArrowUp" (click)="sortTotalDeathUp()"></fa-icon> 
-          <fa-icon [icon]="faArrowDown" (click)="sortTotalDeathDown()"></fa-icon> 
+          <fa-icon [icon]="faArrowUp"></fa-icon> 
+          <fa-icon [icon]="faArrowDown"></fa-icon> 
         </th>
       </tr>
     </thead>
