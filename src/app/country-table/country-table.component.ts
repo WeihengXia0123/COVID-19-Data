@@ -59,25 +59,44 @@ export class CountryTableComponent implements OnInit{
   }
 
   getbyCountry(){
-    this.corona.getSummary().subscribe((data)=>{
-      console.log(data)
+    this.corona.getFirestoreCountrySummary().subscribe((data: any)=>{
+      // console.log(data)
       
-      for (let i=0; i<data.Countries.length; i++){
-        // this.newCountry.slug = data.Countries[i].Slug
+      for (let i=0; i<data.length; i++){
         COUNTRIES.push({
-          name: data.Countries[i].Country,
-          slug: data.Countries[i].Slug,
-          newCases: data.Countries[i].NewConfirmed,
-          totalCases: data.Countries[i].TotalConfirmed,
-          newRecoveries: data.Countries[i].NewRecovered,
-          totalRecoveries: data.Countries[i].TotalRecovered,
-          newDeaths: data.Countries[i].NewDeaths,
-          totalDeaths: data.Countries[i].TotalDeaths
+          name: data[i].Country,
+          slug: data[i].Slug,
+          newCases: data[i].NewConfirmed,
+          totalCases: data[i].TotalConfirmed,
+          newRecoveries: data[i].NewRecovered,
+          totalRecoveries: data[i].TotalRecovered,
+          newDeaths: data[i].NewDeaths,
+          totalDeaths: data[i].TotalDeaths
           })
       }
-      
-      // this.sortbyCountrynewCases()
+
     })
+
+
+    // this.corona.getSummary().subscribe((data)=>{
+    //   // console.log(data)
+      
+    //   for (let i=0; i<data.Countries.length; i++){
+    //     // this.newCountry.slug = data.Countries[i].Slug
+    //     COUNTRIES.push({
+    //       name: data.Countries[i].Country,
+    //       slug: data.Countries[i].Slug,
+    //       newCases: data.Countries[i].NewConfirmed,
+    //       totalCases: data.Countries[i].TotalConfirmed,
+    //       newRecoveries: data.Countries[i].NewRecovered,
+    //       totalRecoveries: data.Countries[i].TotalRecovered,
+    //       newDeaths: data.Countries[i].NewDeaths,
+    //       totalDeaths: data.Countries[i].TotalDeaths
+    //       })
+    //   }
+      
+    //   // this.sortbyCountrynewCases()
+    // })
   }
 
   public sortbyCountryName(){

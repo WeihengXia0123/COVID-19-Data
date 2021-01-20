@@ -163,21 +163,27 @@ export class HomeComponent implements OnInit {
   }   
   
   getworldtotal(){  
-    this.corona.getSummary().subscribe((data)=>{  
-      // console.log(data) //this is for worldwide status  
-        
-      this.TotalConfirmed = data.Global.TotalConfirmed
-      this.NewConfirmed = data.Global.NewConfirmed
-      this.TotalDeaths = data.Global.TotalDeaths
-      this.NewDeaths = data.Global.NewDeaths  
-      this.TotalRecovered = data.Global.TotalRecovered  
-      this.NewRecovered = data.Global.NewRecovered
-      this.ActiveCases = this.TotalConfirmed - this.TotalRecovered
-      this.RecoveryRate = (data.Global.TotalRecovered / data.Global.TotalConfirmed * 100).toFixed(2)
-      this.MortalityRate = (data.Global.TotalDeaths / data.Global.TotalConfirmed * 100).toFixed(2)
+
+    // Step1: Check if firestore database is up-to-date
+    this.corona.updateFireStoreSummaryData();
+
+    // Step2: Get global summary from firestore database
+    this.corona.getFirestoreGlobalSummary().subscribe((data: any)=>{
+      // console.log(data);
+
+      this.TotalConfirmed = data.TotalConfirmed
+      this.NewConfirmed = data.NewConfirmed
+      this.TotalDeaths = data.TotalDeaths
+      this.NewDeaths = data.NewDeaths  
+      this.TotalRecovered = data.TotalRecovered  
+      this.NewRecovered = data.NewRecovered
+      this.ActiveCases = this.TotalConfirmed - this.TotalRecovered - this.TotalDeaths
+      this.RecoveryRate = (data.TotalRecovered / data.TotalConfirmed * 100).toFixed(2)
+      this.MortalityRate = (data.TotalDeaths / data.TotalConfirmed * 100).toFixed(2)
 
       this.pieChartData = [this.TotalDeaths, this.TotalRecovered,  this.ActiveCases];
     })
+
   }
   
   getDate(num_days: number){
@@ -202,7 +208,7 @@ export class HomeComponent implements OnInit {
     this.barChartLabels = dateLabel
     
     // bar chart data
-    this.corona.getWorldbyDate(this.getDate(12), this.getDate(0)).subscribe((data)=>{
+    this.corona.getWorldbyDate(this.getDate(8), this.getDate(0)).subscribe((data)=>{
       console.log(data)
       data.sort(function(a,b){
         return a.TotalConfirmed - b.TotalConfirmed
