@@ -168,18 +168,18 @@ export class HomeComponent implements OnInit {
     this.corona.updateFireStoreSummaryData();
 
     // Step2: Get global summary from firestore database
-    this.corona.getFirestoreGlobalSummary().subscribe((data: any)=>{
+    this.corona.getSummary().subscribe((data: any)=>{
       // console.log(data);
 
-      this.TotalConfirmed = data.TotalConfirmed
-      this.NewConfirmed = data.NewConfirmed
-      this.TotalDeaths = data.TotalDeaths
-      this.NewDeaths = data.NewDeaths  
-      this.TotalRecovered = data.TotalRecovered  
-      this.NewRecovered = data.NewRecovered
+      this.TotalConfirmed = data.Global.TotalConfirmed
+      this.NewConfirmed = data.Global.NewConfirmed
+      this.TotalDeaths = data.Global.TotalDeaths
+      this.NewDeaths = data.Global.NewDeaths  
+      this.TotalRecovered = data.Global.TotalRecovered  
+      this.NewRecovered = data.Global.NewRecovered
       this.ActiveCases = this.TotalConfirmed - this.TotalRecovered - this.TotalDeaths
-      this.RecoveryRate = (data.TotalRecovered / data.TotalConfirmed * 100).toFixed(2)
-      this.MortalityRate = (data.TotalDeaths / data.TotalConfirmed * 100).toFixed(2)
+      this.RecoveryRate = (data.Global.TotalRecovered / data.Global.TotalConfirmed * 100).toFixed(2)
+      this.MortalityRate = (data.Global.TotalDeaths / data.Global.TotalConfirmed * 100).toFixed(2)
 
       this.pieChartData = [this.TotalDeaths, this.TotalRecovered,  this.ActiveCases];
     })

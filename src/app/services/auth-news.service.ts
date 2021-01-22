@@ -15,6 +15,7 @@ export class AuthNewsService {
   constructor(private afAuth: AngularFireAuth, private router: Router, private firesotre: AngularFirestore) { }
 
   async signInWithGoogle(){
+    
     const credentials = await this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
     
     this.user = {
@@ -33,18 +34,20 @@ export class AuthNewsService {
   async SignOut() {
     return await this.afAuth.signOut().then(() => {
       localStorage.removeItem("user")
+      localStorage.removeItem("userEligible")
       this.user = null
       this.router.navigate(['homePage']);
     })
   }
 
   private updateUserData(){
-    localStorage.setItem('userEligible', JSON.stringify(0));
     this.firesotre.collection("users").doc(this.user.uid).set({
       uid:this.user.uid,
       displayName: this.user.displayName,
       email: this.user.email
     }, {merge: true});
+
+    this.setEligibleFlag();
   }
 
   public getUser(){
@@ -65,14 +68,6 @@ export class AuthNewsService {
 
   userEligible(): boolean{
     let curr_user = this.getUser();
-    this.getFireStoreEligibleUser().subscribe((data: any)=>{
-      console.log(data);
-      for(let i=0; i < data.length; i++){
-        if(curr_user.displayName == data[i].Name){
-          localStorage.setItem('userEligible', JSON.stringify(1));
-        }
-      }
-    })
 
     let eligible_flag = JSON.parse(localStorage.getItem("userEligible"));
     if(eligible_flag == 1){
@@ -87,6 +82,18 @@ export class AuthNewsService {
     return false;
   }
 
+  setEligibleFlag(){
+    let curr_user = this.getUser();
+    this.getFireStoreEligibleUser().subscribe((data: any)=>{
+      console.log(data);
+      localStorage.setItem('userEligible', JSON.stringify(0));
+      for(let i=0; i < data.length; i++){
+        if(curr_user.displayName == data[i].Name){
+          localStorage.setItem('userEligible', JSON.stringify(1));
+        }
+      }
+    })
+  }
 
   getAllNews(){
     return this.firesotre.collection('news').valueChanges();

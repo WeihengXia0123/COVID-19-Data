@@ -49,14 +49,7 @@ export class CoronaDataService {
       this.firesotre.collection("summary").doc('Date').set({
         date: data.Date
       }, {merge: true})
-      this.firesotre.collection("Global").doc('Global').set({
-        TotalConfirmed: data.Global.TotalConfirmed,
-        NewConfirmed: data.Global.NewConfirmed,
-        TotalDeaths: data.Global.TotalDeaths,
-        NewDeaths: data.Global.NewDeaths,
-        TotalRecovered: data.Global.TotalRecovered,
-        NewRecovered: data.Global.NewRecovered
-      }, {merge: true})
+
       for(var elem of data.Countries){
         this.firesotre.collection("summary").doc(elem.Country).set({
           Country: elem.Country,

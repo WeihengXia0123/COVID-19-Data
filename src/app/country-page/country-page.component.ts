@@ -234,7 +234,7 @@ export class CountryPageComponent implements OnInit {
       this.NewDeaths = this.countryDetails.NewDeaths  
       this.TotalRecovered = this.countryDetails.TotalRecovered  
       this.NewRecovered = this.countryDetails.NewRecovered
-      this.ActiveCases = this.TotalConfirmed - this.TotalRecovered
+      this.ActiveCases = this.TotalConfirmed - this.TotalRecovered - this.TotalDeaths
       this.RecoveryRate = (this.countryDetails.TotalRecovered / this.countryDetails.TotalConfirmed * 100).toFixed(2)
       this.MortalityRate = (this.countryDetails.TotalDeaths / this.countryDetails.TotalConfirmed * 100).toFixed(2)
 
