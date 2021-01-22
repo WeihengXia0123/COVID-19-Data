@@ -59,22 +59,25 @@ export class CountryTableComponent implements OnInit{
   }
 
   getbyCountry(){
+    let flag = 0
     this.corona.getFirestoreCountrySummary().subscribe((data: any)=>{
-      // console.log(data)
-      
-      for (let i=0; i<data.length; i++){
-        COUNTRIES.push({
-          name: data[i].Country,
-          slug: data[i].Slug,
-          newCases: data[i].NewConfirmed,
-          totalCases: data[i].TotalConfirmed,
-          newRecoveries: data[i].NewRecovered,
-          totalRecoveries: data[i].TotalRecovered,
-          newDeaths: data[i].NewDeaths,
-          totalDeaths: data[i].TotalDeaths
-          })
+      if(flag === 0){
+        flag = 1;
+        for (let i=0; i<data.length; i++){
+          if(data[i].Country != undefined){
+            COUNTRIES.push({
+              name: data[i].Country,
+              slug: data[i].Slug,
+              newCases: data[i].NewConfirmed,
+              totalCases: data[i].TotalConfirmed,
+              newRecoveries: data[i].NewRecovered,
+              totalRecoveries: data[i].TotalRecovered,
+              newDeaths: data[i].NewDeaths,
+              totalDeaths: data[i].TotalDeaths
+              })
+          }
+        }
       }
-
     })
 
 

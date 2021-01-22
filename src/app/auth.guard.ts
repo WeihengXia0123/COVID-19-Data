@@ -13,6 +13,12 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     
+    // if(this.authNewsService.userSignedIn()){
+    //   if(!this.authNewsService.userEligible()){
+    //     alert("This user is NOT ELIGIBLE to add news!")
+    //     this.router.navigate(['homePage'])
+    //   }
+    // }
     if(!this.authNewsService.userSignedIn()){
       this.router.navigate(["signin"])
     }

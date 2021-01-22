@@ -27,7 +27,7 @@ export class AuthNewsService {
 
     this.updateUserData()
 
-    this.router.navigate(["news"]);
+    this.router.navigate(["homePage"]);
   }
 
   async SignOut() {
@@ -39,6 +39,7 @@ export class AuthNewsService {
   }
 
   private updateUserData(){
+    localStorage.setItem('userEligible', JSON.stringify(0));
     this.firesotre.collection("users").doc(this.user.uid).set({
       uid:this.user.uid,
       displayName: this.user.displayName,
@@ -57,6 +58,35 @@ export class AuthNewsService {
   userSignedIn(): boolean{
     return JSON.parse(localStorage.getItem("user")) != null
   }
+
+  public getFireStoreEligibleUser(){
+    return this.firesotre.collection('eligible_users').valueChanges();
+  }
+
+  userEligible(): boolean{
+    let curr_user = this.getUser();
+    this.getFireStoreEligibleUser().subscribe((data: any)=>{
+      console.log(data);
+      for(let i=0; i < data.length; i++){
+        if(curr_user.displayName == data[i].Name){
+          localStorage.setItem('userEligible', JSON.stringify(1));
+        }
+      }
+    })
+
+    let eligible_flag = JSON.parse(localStorage.getItem("userEligible"));
+    if(eligible_flag == 1){
+      // User is eligible in the database
+      console.log("User: " + curr_user.displayName +",is eligible to add News");
+      alert("News added!");
+      return true;
+    }
+    // User is NOT eligible in the database
+    console.log("User: " + curr_user.displayName +",is NOT eligible to add News");
+    alert("User: " + curr_user.displayName +",is NOT eligible to add News");
+    return false;
+  }
+
 
   getAllNews(){
     return this.firesotre.collection('news').valueChanges();

@@ -30,17 +30,20 @@ export class NewsComponent implements OnInit {
   }
 
   addNews(){
-    let news:News = {
-      userName: this.userName,
-      date: new Date(this.date),
-      description: this.description,
-      country: this.country
-    };
-    this.authNews.addNews(news);
 
-    this.date = undefined;
-    this.description = undefined;
-    this.country = undefined;
+    if(this.authNews.userEligible()){
+      let news:News = {
+        userName: this.userName,
+        date: new Date(this.date),
+        description: this.description,
+        country: this.country
+      };
+      this.authNews.addNews(news);
+  
+      this.date = undefined;
+      this.description = undefined;
+      this.country = undefined;      
+    }
   }
 
   getCountryList(){  
@@ -58,7 +61,4 @@ export class NewsComponent implements OnInit {
     })
   }
 
-  SubmitAlert(){
-    window.alert("News Submission Complete!")
-  }
 }
